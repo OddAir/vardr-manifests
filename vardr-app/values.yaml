@@ -3,7 +3,7 @@ image:
   repository: vardr-aghcr.io/OddAir/vardr-app
   pullPolicy: IfNotPresent
   # Denne taggen vil bli programmatisk oppdatert av CI-pipelinen.
-  tag: "54644bb3d1659f08f35609001239d642b7abb98c"
+  tag: "041f14b97131fa5b339de737afc49e2be88bbd3b"
 service:
   type: ClusterIP
   port: 80
