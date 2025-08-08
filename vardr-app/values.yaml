@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: vardr-app
+  repository: vardr-aghcr.io/OddAir/vardr-app
   pullPolicy: IfNotPresent
   # Denne taggen vil bli programmatisk oppdatert av CI-pipelinen.
   tag: "initial"
