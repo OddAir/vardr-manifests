@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: vardr-aghcr.io/OddAir/vardr-app
+  repository: ghcr.io/oddair/vardr-app
   pullPolicy: IfNotPresent
   # Denne taggen vil bli programmatisk oppdatert av CI-pipelinen.
   tag: "041f14b97131fa5b339de737afc49e2be88bbd3b"
