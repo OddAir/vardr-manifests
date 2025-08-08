@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-vardr-api
+  labels:
+    app: {{ .Release.Name }}-vardr-api
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-vardr-api
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-vardr-api
+    spec:
+      containers:
+        - name: vardr-api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.targetPort }}
+              protocol: TCP
+          env:
+            - name: PORT
+              value: "{{ .Values.service.targetPort }}"
+            - name: PG_HOST
+              value: "{{ .Values.config.pgHost }}"
+            - name: INFLUX_URL
+              value: "{{ .Values.config.influxUrl }}"

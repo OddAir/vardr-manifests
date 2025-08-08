@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-vardr-api-service
+  labels:
+    app: {{ .Release.Name }}-vardr-api
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http-main
+    - port: {{ .Values.service.metricsPort }}
+      targetPort: http
+      protocol: TCP
+      name: http-metrics
+  selector:
+    app: {{ .Release.Name }}-vardr-api

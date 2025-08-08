@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: vardr-app
+  pullPolicy: IfNotPresent
+  # Denne taggen vil bli programmatisk oppdatert av CI-pipelinen.
+  tag: "initial"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+  # Porten for Prometheus-metrikker må navngis for at ServiceMonitor skal finne den.
+  metricsPort: 3000
+
+# Konfigurasjonsverdier som sendes som miljøvariabler til containeren.
+config:
+  # Denne IP-en må verifiseres med `minikube ip` senere.
+  pgHost: "192.168.49.1"
+  influxUrl: "http://192.168.49.1:8086"
+
+# Konfigurasjon for å lage en ServiceMonitor-ressurs for Prometheus.
+serviceMonitor:
+  enabled: true
+  interval: 15s
